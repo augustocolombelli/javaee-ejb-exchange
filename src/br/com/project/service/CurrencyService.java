@@ -13,12 +13,16 @@ public class CurrencyService {
 
 	@Inject
 	private CurrencyDao dao;
-	
+
 	public void insert(Currency currency) {
 		this.dao.save(currency);
 	}
-	
+
 	public List<Currency> getAll() {
 		return this.dao.getAll();
+	}
+
+	public Currency findById(Integer currencyId) {
+		return this.dao.findById(currencyId);
 	}
 }

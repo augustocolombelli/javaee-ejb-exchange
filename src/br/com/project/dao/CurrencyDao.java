@@ -26,4 +26,9 @@ public class CurrencyDao {
 		return manager.createQuery(sql.toString(), Currency.class).getResultList();
 	}
 
+	public Currency findById(Integer currencyId) {
+		Currency currency = this.manager.find(Currency.class, currencyId);
+		return currency;
+	}
+
 }

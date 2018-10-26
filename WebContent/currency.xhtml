@@ -4,41 +4,42 @@
   xmlns:ui="http://java.sun.com/jsf/facelets"
   xmlns:h="http://java.sun.com/jsf/html"
   xmlns:f="http://java.sun.com/jsf/core"
-  xmlns:c="http://java.sun.com/jsp/jstl/core"
   xmlns:p="http://primefaces.org/ui">
 
-<f:view contentType="text/html" />
+<ui:composition template="template.xhtml">
 
-<h:head>
-  <title>Currency</title>
-</h:head>
-<h:body>
+  <ui:define name="body">
 
-  <h:form id="formCurrency">
-    <h:panelGrid columns="2">
-      <p:outputLabel value="Name:" for="inputName"></p:outputLabel>
-      <p:inputText id="inputName" value="#{currencyBean.currency.name}" />
+    <h:form id="formCurrency">
+      <p:panelGrid columns="2">
+        <f:facet name="header">
+          <p:outputLabel value="Currency" />
+        </f:facet>
 
-      <f:facet name="footer">
-        <p:commandButton value="Save" action="#{currencyBean.insert}"
-          process="@form" update="@form" />
-      </f:facet>
-    </h:panelGrid>
-    <p:separator id="separatorCurrency" />
+        <p:outputLabel value="Name:" for="inputName"></p:outputLabel>
+        <p:inputText id="inputName"
+          value="#{currencyBean.currency.name}" />
 
-    <h3>Currencies</h3>
+        <f:facet name="footer">
+          <p:commandButton value="Save" action="#{currencyBean.insert}" process="@form" update="@form" />
+        </f:facet>
+      </p:panelGrid>
+      <p:separator id="separatorCurrency" />
 
-    <p:dataTable var="currency" value="#{currencyBean.allCurrencies}">
-      <p:column headerText="Id">
-        <h:outputText value="#{currency.id}" />
-      </p:column>
+      <h3>Currencies</h3>
 
-      <p:column headerText="Name">
-        <h:outputText value="#{currency.name}" />
-      </p:column>
-    </p:dataTable>
+      <p:dataTable  var="currency" value="#{currencyBean.allCurrencies}">
+        <p:column headerText="Id">
+          <h:outputText value="#{currency.id}" />
+        </p:column>
+
+        <p:column headerText="Name">
+          <h:outputText value="#{currency.name}" />
+        </p:column>
+      </p:dataTable>
 
 
-  </h:form>
-</h:body>
+    </h:form>
+  </ui:define>
+</ui:composition>
 </html>

@@ -10,6 +10,7 @@
     <jta-data-source>java:/exchangeDS</jta-data-source>
     
     <class>br.com.project.model.Currency</class>
+    <class>br.com.project.model.Exchange</class>
 
     <properties>
       <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />

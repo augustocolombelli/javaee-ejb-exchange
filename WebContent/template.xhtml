@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:c="http://java.sun.com/jsp/jstl/core"
+  xmlns:p="http://primefaces.org/ui">
+
+<f:view contentType="text/html" />
+
+<h:head>
+  <title>Exchange</title>
+</h:head>
+
+<h:body>
+  <h:form id="menuApplication">
+    <p:tabMenu>
+      <p:menuitem value="Home" action="#{menuBean.indexPage}" />
+      <p:menuitem value="Currency" action="#{menuBean.currencyPage}" />
+      <p:menuitem value="Exchange" action="#{menuBean.exchangePage}" />
+      <p:menuitem value="Exchange Variation" action="#{menuBean.exchangeVariationPage}" />
+    </p:tabMenu>
+  </h:form>
+  
+  <br />
+  
+  <ui:insert name="body"/>
+  
+</h:body>
+
+</html>

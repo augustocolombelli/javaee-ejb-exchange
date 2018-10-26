@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="template.xhtml">
+
+  <ui:define name="body">
+
+    <h:form id="formExchange">
+      <p:panelGrid columns="2">
+        <f:facet name="header">
+          <p:outputLabel value="Exchange" />
+        </f:facet>
+
+        <p:outputLabel value="Value:" for="inputValue"/>
+        <p:inputNumber id="inputValue" value="#{exchangeBean.exchange.value}" />
+        
+        <p:outputLabel value="Date:" for="inputDate"/>
+        <p:calendar id="inputDate" value="#{exchangeBean.exchange.date}" />
+        
+        <p:outputLabel value="Currency:" />
+        <p:selectOneMenu value="#{exchangeBean.currencyId}" style="width:165px;">
+          <f:selectItems value="#{exchangeBean.currencies}" var="currency" itemValue="#{currency.id}" itemLabel="#{currency.name}" />
+        </p:selectOneMenu>
+
+        <f:facet name="footer">
+          <p:commandButton value="Save" action="#{exchangeBean.insert}" process="@form" update="@form" />
+        </f:facet>
+      </p:panelGrid>
+      <p:separator id="separatorCurrency" />
+
+      <h3>Exchanges</h3>
+
+      <p:dataTable  var="exchange" value="#{exchangeBean.allExchanges}">
+        <p:column headerText="Id">
+          <h:outputText value="#{exchange.id}" />
+        </p:column>
+
+        <p:column headerText="Currency">
+          <h:outputText value="#{exchange.currency.name}" />
+        </p:column>
+
+        <p:column headerText="Date">
+          <h:outputText value="#{exchange.date}" />
+        </p:column>
+
+        <p:column headerText="Value">
+          <h:outputText value="#{exchange.value}" />
+        </p:column>
+      </p:dataTable>
+
+    </h:form>
+  </ui:define>
+</ui:composition>
+</html>
