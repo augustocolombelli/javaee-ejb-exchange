@@ -33,14 +33,22 @@
       </p:panelGrid>
       <p:separator id="separatorCurrency" />
 
-      <h3>Exchanges</h3>
-
-      <p:dataTable  var="exchange" value="#{exchangeBean.allExchanges}">
+      <p:dataTable  var="exchange" value="#{exchangeBean.allExchanges}" widgetVar="exchangeTable">
+        <f:facet name="header">
+            Exchanges
+        </f:facet>
+       
         <p:column headerText="Id">
           <h:outputText value="#{exchange.id}" />
         </p:column>
 
-        <p:column headerText="Currency">
+        <p:column filterBy="#{exchange.currency.name}" headerText="Currency" filterMatchMode="contains">
+          <f:facet name="filter">
+            <p:selectOneMenu onchange="PF('exchangeTable').filter()"  style="width:200px;">
+              <f:selectItem itemLabel="Select one" itemValue="#{null}" noSelectionOption="true" />
+              <f:selectItems value="#{exchangeBean.currencies}" var="currency" itemValue="#{currency.name}" itemLabel="#{currency.name}" />
+            </p:selectOneMenu>
+          </f:facet>
           <h:outputText value="#{exchange.currency.name}" />
         </p:column>
 
@@ -51,6 +59,11 @@
         <p:column headerText="Value">
           <h:outputText value="#{exchange.value}" />
         </p:column>
+        
+        <p:column style="width:32px">
+          <h:commandLink value="Delete" action="#{exchangeBean.remove(exchange)}" />
+        </p:column>
+
       </p:dataTable>
 
     </h:form>

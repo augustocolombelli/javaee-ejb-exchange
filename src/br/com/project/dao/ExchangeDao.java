@@ -17,11 +17,16 @@ public class ExchangeDao {
 	public void save(Exchange exchange) {
 		manager.persist(exchange);
 	}
+	
+	public void remove(Exchange exchange) {
+		manager.remove(manager.contains(exchange) ? exchange : manager.merge(exchange));
+	}
 
 	public List<Exchange> getAll() {
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT e ");
 		sql.append("FROM Exchange e ");
+		sql.append("ORDER BY e.date DESC ");
 
 		return manager.createQuery(sql.toString(), Exchange.class).getResultList();
 	}

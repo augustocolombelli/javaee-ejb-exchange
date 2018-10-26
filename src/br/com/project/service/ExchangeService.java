@@ -18,6 +18,10 @@ public class ExchangeService {
 		this.dao.save(exchange);
 	}
 
+	public void remove(Exchange exchange) {
+		this.dao.remove(exchange);
+	}
+	
 	public List<Exchange> getAll() {
 		return this.dao.getAll();
 	}

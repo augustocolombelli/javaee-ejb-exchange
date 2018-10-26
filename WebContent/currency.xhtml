@@ -26,9 +26,11 @@
       </p:panelGrid>
       <p:separator id="separatorCurrency" />
 
-      <h3>Currencies</h3>
-
       <p:dataTable  var="currency" value="#{currencyBean.allCurrencies}">
+         <f:facet name="header">
+            Currencies
+        </f:facet>
+        
         <p:column headerText="Id">
           <h:outputText value="#{currency.id}" />
         </p:column>
@@ -37,7 +39,6 @@
           <h:outputText value="#{currency.name}" />
         </p:column>
       </p:dataTable>
-
 
     </h:form>
   </ui:define>

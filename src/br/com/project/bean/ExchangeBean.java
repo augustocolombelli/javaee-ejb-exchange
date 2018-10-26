@@ -24,9 +24,13 @@ public class ExchangeBean {
 
 	public void insert() {
 		Currency currency = currencyService.findById(currencyId);
-		exchange.setCurrency(currency);
-		service.insert(exchange);
-		exchange = new Exchange();
+		this.exchange.setCurrency(currency);
+		service.insert(this.exchange);
+		this.exchange = new Exchange();
+	}
+	
+	public void remove(Exchange exchangeToRemove) {
+		service.remove(exchangeToRemove);
 	}
 
 	public List<Exchange> getAllExchanges() {
@@ -48,5 +52,7 @@ public class ExchangeBean {
 	public void setCurrencyId(Integer currencyId) {
 		this.currencyId = currencyId;
 	}
+	
+
 
 }
