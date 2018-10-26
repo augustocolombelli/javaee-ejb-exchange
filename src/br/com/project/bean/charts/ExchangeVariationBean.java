@@ -18,20 +18,56 @@ import br.com.project.service.ExchangeService;
 @Model
 public class ExchangeVariationBean implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
 
 	@Inject
 	private ExchangeService exchangeService;
-	
-//	public LineChartModel getDataModel() {
-//		generateChart();
-//		return dataModel;
-//	}
-	
+
 	public LineChartModel getLineChartModel() {
-		List<Exchange> exchanges = exchangeService.getAll();
-		List<ExchangeVariationSerie> exchangeSeries = generateDataToChart(exchanges);
-		
+		List<ExchangeVariationSerie> exchangeSeries = generateDataToChart(exchangeService.getAll());
+		LineChartModel dataModel = createLineChartModelWithData(exchangeSeries);
+		configureChart(dataModel);
+		return dataModel;
+	}
+
+	private List<ExchangeVariationSerie> generateDataToChart(List<Exchange> exchanges) {
+		List<ExchangeVariationSerie> exchangeSeries = new ArrayList<ExchangeVariationSerie>();
+
+		for (Exchange exchange : exchanges) {
+			if (containSerieWithLabel(exchange.getCurrency().getName(), exchangeSeries)) {
+				ExchangeVariationSerie exchangeSerie = returnExchangeSerieByLabel(exchange.getCurrency().getName(),
+						exchangeSeries);
+				exchangeSerie.addExchangeValue(new ExchangeVariationValue(exchange.getDate(), exchange.getValue()));
+			} else {
+				ExchangeVariationSerie exchangeSerie = new ExchangeVariationSerie();
+				exchangeSerie.setLabel(exchange.getCurrency().getName());
+				exchangeSerie.addExchangeValue(new ExchangeVariationValue(exchange.getDate(), exchange.getValue()));
+				exchangeSeries.add(exchangeSerie);
+			}
+		}
+
+		return exchangeSeries;
+	}
+
+	private boolean containSerieWithLabel(String label, List<ExchangeVariationSerie> exchangeSeries) {
+		for (ExchangeVariationSerie exchangeSerie : exchangeSeries) {
+			if (exchangeSerie.getLabel().equals(label)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private ExchangeVariationSerie returnExchangeSerieByLabel(String label,
+			List<ExchangeVariationSerie> exchangeSeries) {
+		for (ExchangeVariationSerie exchangeSerie : exchangeSeries) {
+			if (exchangeSerie.getLabel().equals(label)) {
+				return exchangeSerie;
+			}
+		}
+		return null;
+	}
+
+	private LineChartModel createLineChartModelWithData(List<ExchangeVariationSerie> exchangeSeries) {
 		LineChartModel dataModel;
 		dataModel = new LineChartModel();
 
@@ -44,9 +80,10 @@ public class ExchangeVariationBean implements Serializable {
 			}
 			dataModel.addSeries(serie);
 		}
-		
-		dataModel.setTitle("Title...");
-		dataModel.setZoom(true);
+		return dataModel;
+	}
+
+	private void configureChart(LineChartModel dataModel) {
 		dataModel.setLegendPosition("e");
 		dataModel.getAxis(AxisType.Y).setLabel("Values");
 
@@ -55,46 +92,6 @@ public class ExchangeVariationBean implements Serializable {
 		axis.setTickFormat("%b %#d, %y");
 
 		dataModel.getAxes().put(AxisType.X, axis);
-		
-		return dataModel;
 	}
-	
-	private List<ExchangeVariationSerie> generateDataToChart(List<Exchange> exchanges){
-		List<ExchangeVariationSerie> exchangeSeries = new ArrayList<ExchangeVariationSerie>();
-		
-		for(Exchange exchange : exchanges) {
-			if(containSerieWithLabel(exchange.getCurrency().getName(), exchangeSeries)) {
-				ExchangeVariationSerie exchangeSerie = returnExchangeSerieByLabel(exchange.getCurrency().getName(), exchangeSeries);
-				exchangeSerie.addExchangeValue(new ExchangeVariationValue(exchange.getDate(), exchange.getValue()));
-			}else {
-				ExchangeVariationSerie exchangeSerie = new ExchangeVariationSerie();
-				exchangeSerie.setLabel(exchange.getCurrency().getName());
-				exchangeSerie.addExchangeValue(new ExchangeVariationValue(exchange.getDate(), exchange.getValue()));
-				exchangeSeries.add(exchangeSerie);
-			}
-		}
-		
-		return exchangeSeries;
-	}
-	
-	private boolean containSerieWithLabel(String label, List<ExchangeVariationSerie> exchangeSeries) {
-		for(ExchangeVariationSerie exchangeSerie : exchangeSeries) {
-			if(exchangeSerie.getLabel().equals(label)) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	private ExchangeVariationSerie returnExchangeSerieByLabel(String label, List<ExchangeVariationSerie> exchangeSeries) {
-		for(ExchangeVariationSerie exchangeSerie : exchangeSeries) {
-			if(exchangeSerie.getLabel().equals(label)) {
-				return exchangeSerie;
-			}
-		}
-		return null;
-	}
-	
-
 
 }
