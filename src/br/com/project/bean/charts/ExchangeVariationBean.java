@@ -1,4 +1,4 @@
-package br.com.project.bean;
+package br.com.project.bean.charts;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -14,8 +14,6 @@ import org.primefaces.model.chart.LineChartModel;
 import org.primefaces.model.chart.LineChartSeries;
 import org.primefaces.util.DateUtils;
 
-import br.com.project.bean.charts.ExchangeVariationSerie;
-import br.com.project.bean.charts.ExchangeVariationValue;
 import br.com.project.model.Exchange;
 import br.com.project.service.ExchangeService;
 
