@@ -1,15 +1,15 @@
-package br.com.project.bean.chart;
+package br.com.project.bean.charts;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExchangeSerie {
+public class ExchangeVariationSerie {
 
 	private String label;
-	private List<ExchangeValue> exchangeValues;
+	private List<ExchangeVariationValue> exchangeValues;
 
-	public ExchangeSerie() {
-		exchangeValues = new ArrayList<ExchangeValue>();
+	public ExchangeVariationSerie() {
+		exchangeValues = new ArrayList<ExchangeVariationValue>();
 	}
 	
 	public String getLabel() {
@@ -20,11 +20,11 @@ public class ExchangeSerie {
 		this.label = label;
 	}
 
-	public List<ExchangeValue> getExchangeValues() {
+	public List<ExchangeVariationValue> getExchangeValues() {
 		return exchangeValues;
 	}
 
-	public void addExchangeValue(ExchangeValue exchangeValue) {
+	public void addExchangeValue(ExchangeVariationValue exchangeValue) {
 		this.exchangeValues.add(exchangeValue);
 	}
 

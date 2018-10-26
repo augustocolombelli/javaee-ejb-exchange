@@ -1,13 +1,13 @@
-package br.com.project.bean.chart;
+package br.com.project.bean.charts;
 
 import java.util.Date;
 
-public class ExchangeValue {
+public class ExchangeVariationValue {
 
 	private Date date;
 	private Double value;
 
-	public ExchangeValue(Date date, Double value) {
+	public ExchangeVariationValue(Date date, Double value) {
 		this.date = date;
 		this.value = value;
 	}
