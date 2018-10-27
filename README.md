@@ -92,6 +92,27 @@ public class ExchangeService {
  }
 ```
 
+### Beans
+In this project, we are using JSF with Primefaces. Because of this, the bean package has the classes responsible for managing the view. These classes work together with the xhtml files.
+In the simple case, it is necessary to annotate these classes with @Model. These classes are responsible to calling the service and execute the operation. So we need to inject the service here.
+
+```
+@Model
+public class CurrencyBean {
+
+  private Currency currency = new Currency();
+
+  @Inject
+  private CurrencyService service;
+	
+  public void insert() {
+    service.insert(this.currency);
+    this.currency = new Currency();
+  }
+  
+  //codes
+}
+```
 
 
 
