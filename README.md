@@ -14,7 +14,7 @@ To execute this project, it is necessary:
 - Primefaces 6.2;
 - JDK 1.7.0_80.
 
-##### Step 1 - Configure the MySQL module on JBoss
+##### Configure the MySQL module on JBoss
 In ".\jboss\modules\com\mysql\main" add a new directory with the MySQL module. This directory needs three files: module.xml; mysql-connector-java-5.1.24-bin.jar; and mysql-connector-java-5.1.24-bin.jar.index. In the module.xml, it is necessary this configuration:
 ```	
 <module xmlns="urn:jboss:module:1.0" name="com.mysql">
@@ -27,7 +27,7 @@ In ".\jboss\modules\com\mysql\main" add a new directory with the MySQL module. T
 </module>
 ```
 
-##### Step 2 - Configure file standalone.xml on JBoss
+##### Configure file standalone.xml on JBoss
 In the file standalone.xml on ".\jboss\standalone\configuration" add this configurations:
 ```
 <datasource jndi-name="java:/exchangeDS" pool-name="exchangeDS" enabled="true" use-java-context="true">
@@ -51,7 +51,7 @@ In the file standalone.xml on ".\jboss\standalone\configuration" add this config
 </driver>
 ```
 
-#### Step 3 - Prepare the Database
+##### Prepare the Database
 In MySQL, it is necessary to create the database. 
 ```
 create database exchange
