@@ -3,6 +3,8 @@ package br.com.project.bean;
 import java.util.List;
 
 import javax.enterprise.inject.Model;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import br.com.project.model.Currency;
@@ -23,10 +25,15 @@ public class ExchangeBean {
 	private CurrencyService currencyService;
 
 	public void insert() {
-		Currency currency = currencyService.findById(currencyId);
-		this.exchange.setCurrency(currency);
-		service.insert(this.exchange);
-		this.exchange = new Exchange();
+		FacesContext context = FacesContext.getCurrentInstance();
+		try {
+			Currency currency = currencyService.findById(currencyId);
+			this.exchange.setCurrency(currency);
+			service.insert(this.exchange);
+			this.exchange = new Exchange();
+		} catch (Exception e) {
+			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getCause().getMessage()));
+		}
 	}
 	
 	public void remove(Exchange exchangeToRemove) {

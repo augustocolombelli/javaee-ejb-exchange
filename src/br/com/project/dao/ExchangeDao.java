@@ -45,13 +45,4 @@ public class ExchangeDao {
 		return exchanges;
 	}
 	
-	public boolean hasExchangeInTheSameDate(Exchange exchange) {
-		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT e ");
-		sql.append(" FROM Exchange e ");
-		sql.append(" WHERE e.currency.id = :currency_id ");
-		sql.append("  AND e.date = :currency_id ");
-		
-		return true;
-	}
 }

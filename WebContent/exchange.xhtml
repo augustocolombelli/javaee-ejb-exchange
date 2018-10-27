@@ -9,7 +9,11 @@
 <ui:composition template="template.xhtml">
   <ui:define name="body">
     <h:form id="formExchange">
-
+    
+      <p:messages id="messages" showDetail="true" closable="true">
+        <p:autoUpdate />
+      </p:messages>
+    
       <p:panelGrid columns="2">
         <f:facet name="header">
           <p:outputLabel value="Exchange" />

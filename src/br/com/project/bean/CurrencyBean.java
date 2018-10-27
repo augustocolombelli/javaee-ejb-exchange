@@ -29,8 +29,7 @@ public class CurrencyBean {
 		try {
 			service.remove(currency);
 		} catch (Exception e) {
-			context.addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getCause().getMessage()));
+			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getCause().getMessage()));
 		}
 	}
 

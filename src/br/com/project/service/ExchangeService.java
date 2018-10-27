@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import br.com.project.dao.ExchangeDao;
 import br.com.project.model.Exchange;
+import br.com.project.service.validators.ExchangeRateInTheSameDateValidator;
 
 @Stateless
 public class ExchangeService {
@@ -15,13 +16,16 @@ public class ExchangeService {
 	private ExchangeDao dao;
 
 	public void insert(Exchange exchange) {
+		List<Exchange> exchangesInTheSameCurrency = dao.findByCurrency(exchange.getCurrency());
+		new ExchangeRateInTheSameDateValidator().validate(exchange, exchangesInTheSameCurrency);
+		
 		this.dao.save(exchange);
 	}
 
 	public void remove(Exchange exchange) {
 		this.dao.remove(exchange);
 	}
-	
+
 	public List<Exchange> getAll() {
 		return this.dao.getAll();
 	}
