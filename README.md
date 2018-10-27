@@ -17,8 +17,8 @@ The example system is responsible for presents the exchange rate. The main requi
 It is necessary to configure the EJB container and MySQL database. 
 
 ##### Step 1 - Configure the MySQL module on JBoss
-In the directory ".\jboss-as-7.1.1.Final\modules\com" add a new directory with the MySQL module. This directory needs three files: module.xml; mysql-connector-java-5.1.24-bin.jar; and mysql-connector-java-5.1.24-bin.jar.index. In the module.xml, it is necessary this configuration:
-```
+In the directory ".\jboss-as-7.1.1.Final\modules\com\mysql\main" add a new directory with the MySQL module. This directory needs three files: module.xml; mysql-connector-java-5.1.24-bin.jar; and mysql-connector-java-5.1.24-bin.jar.index. In the module.xml, it is necessary this configuration:
+```	
 <module xmlns="urn:jboss:module:1.0" name="com.mysql">
   <resources>
     <resource-root path="mysql-connector-java-5.1.24-bin.jar"/>
@@ -29,7 +29,7 @@ In the directory ".\jboss-as-7.1.1.Final\modules\com" add a new directory with t
 </module>
 ```
 
-#### Step 2 - Configure file standalone.xml on JBoss
+##### Step 2 - Configure file standalone.xml on JBoss
 In the file standalone.xml on ".\jboss-as-7.1.1.Final\standalone\configuration" add this configurations:
 ```
 <datasource jndi-name="java:/exchangeDS" pool-name="exchangeDS" enabled="true" use-java-context="true">
