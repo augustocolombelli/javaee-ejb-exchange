@@ -71,7 +71,7 @@ public class CurrencyDao {
   public void save(Currency currency) {
     manager.persist(currency);
   }
-  // codes...
+  // some code...
 }
 ```
 
@@ -88,7 +88,7 @@ public class ExchangeService {
   public void insert(Exchange exchange) {
     this.dao.save(exchange);
   }
-  // codes...
+  // some code...
  }
 ```
 
@@ -110,11 +110,29 @@ public class CurrencyBean {
     this.currency = new Currency();
   }
   
-  //codes
+  //some code
 }
 ```
-
-
-
+### Interceptors
+In the service/interceptors package, we have the ExchangeLogInterceptor.class responsible for generating a simple ExchangeService log. To define an interceptor, it is necessary to use the @AroundInvoke annotation in the method.
+```
+@AroundInvoke
+public Object intercept(InvocationContext invocationContext) throws Exception {
+	System.out.println("[LOG] Start the interceptor");
+	System.out.println("[LOG] Intercepted Method: " + invocationContext.getMethod().getName());
+	System.out.println("[LOG] Intercepted Class: " + invocationContext.getTarget().getClass().getSimpleName());
+	Object object = invocationContext.proceed();
+	System.out.println("[LOG] Method was executed");
+	return object;
+}
+```
+The class that is intercepted, it is necessary to annotate with @Interceptors.
+ ```
+@Stateless
+@Interceptors({ExchangeLogInterceptor.class})
+public class ExchangeService {
+// some code
+}
+```
 
 
