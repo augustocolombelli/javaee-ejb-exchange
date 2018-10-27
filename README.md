@@ -114,7 +114,7 @@ public class CurrencyBean {
 }
 ```
 ### Interceptors
-In the service/interceptors package, we have the ExchangeLogInterceptor.class responsible for generating a simple ExchangeService log. To define an interceptor, it is necessary to use the @AroundInvoke annotation in the method.
+In the service/interceptors package, we have the ExchangeLogInterceptor responsible for generating a simple ExchangeService log. To define an interceptor, it is necessary to use the @AroundInvoke annotation in the method.
 ```
 @AroundInvoke
 public Object intercept(InvocationContext invocationContext) throws Exception {
