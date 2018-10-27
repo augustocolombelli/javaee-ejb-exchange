@@ -11,6 +11,11 @@
   <ui:define name="body">
 
     <h:form id="formCurrency">
+    
+      <p:messages id="messages" showDetail="true" closable="true">
+        <p:autoUpdate />
+      </p:messages>
+
       <p:panelGrid columns="2">
         <f:facet name="header">
           <p:outputLabel value="Currency" />
@@ -37,6 +42,10 @@
 
         <p:column headerText="Name">
           <h:outputText value="#{currency.name}" />
+        </p:column>
+        
+        <p:column style="width:32px">
+          <p:commandButton action="#{currencyBean.remove(currency)}" icon="ui-icon-closethick" update="@form"/>
         </p:column>
       </p:dataTable>
 

@@ -61,7 +61,7 @@
         </p:column>
         
         <p:column style="width:32px">
-          <h:commandLink value="Delete" action="#{exchangeBean.remove(exchange)}" />
+          <p:commandButton action="#{exchangeBean.remove(exchange)}" icon="ui-icon-closethick" update="@form"/>
         </p:column>
 
       </p:dataTable>

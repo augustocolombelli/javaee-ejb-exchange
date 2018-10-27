@@ -18,6 +18,10 @@ public class CurrencyDao {
 		manager.persist(currency);
 	}
 
+	public void remove(Currency currency) {
+		manager.remove(manager.contains(currency) ? currency : manager.merge(currency));
+	}
+	
 	public List<Currency> getAll() {
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT c ");
