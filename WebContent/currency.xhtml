@@ -7,9 +7,7 @@
   xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="template.xhtml">
-
   <ui:define name="body">
-
     <h:form id="formCurrency">
     
       <p:messages id="messages" showDetail="true" closable="true">
@@ -21,22 +19,18 @@
           <p:outputLabel value="Currency" />
         </f:facet>
 
-        <p:outputLabel value="Name:" for="inputName"></p:outputLabel>
-        <p:inputText id="inputName"
-          value="#{currencyBean.currency.name}" />
+        <p:outputLabel value="Name:" for="inputName"/>
+        <p:inputText id="inputName" value="#{currencyBean.currency.name}" />
 
         <f:facet name="footer">
-          <p:commandButton value="Save" action="#{currencyBean.insert}" process="@form" update="@form" />
+          <p:commandButton value="Insert" action="#{currencyBean.insert}" process="@form" update="@form" />
         </f:facet>
       </p:panelGrid>
+      
       <p:separator id="separatorCurrency" />
 
       <p:dataTable  var="currency" value="#{currencyBean.allCurrencies}">
-         <f:facet name="header">
-            Currencies
-        </f:facet>
-        
-        <p:column headerText="Id">
+        <p:column headerText="Id" width="100">
           <h:outputText value="#{currency.id}" />
         </p:column>
 

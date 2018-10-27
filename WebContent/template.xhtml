@@ -14,19 +14,24 @@
 </h:head>
 
 <h:body>
-  <h:form id="menuApplication">
-    <p:tabMenu>
-      <p:menuitem value="Home" action="#{menuBean.indexPage}" />
-      <p:menuitem value="Currency" action="#{menuBean.currencyPage}" />
-      <p:menuitem value="Exchange" action="#{menuBean.exchangePage}" />
-      <p:menuitem value="Exchange Variation" action="#{menuBean.exchangeVariationPage}" />
-    </p:tabMenu>
-  </h:form>
-  
-  <br />
-  
-  <ui:insert name="body"/>
-  
+  <p:layout >
+
+    <p:layoutUnit position="west" resizable="true" >
+      <h:form id="menuApplication">
+        <p:menu>
+          <p:menuitem value="Home" action="#{menuBean.indexPage}" />
+          <p:menuitem value="Currency" action="#{menuBean.currencyPage}" />
+          <p:menuitem value="Exchange" action="#{menuBean.exchangePage}" />
+          <p:menuitem value="Exchange Variation" action="#{menuBean.exchangeVariationPage}" />
+        </p:menu>
+      </h:form>
+    </p:layoutUnit>
+
+    <p:layoutUnit position="center">
+      <ui:insert name="body" />
+    </p:layoutUnit>
+
+  </p:layout>
 </h:body>
 
 </html>

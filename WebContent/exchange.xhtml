@@ -7,10 +7,9 @@
   xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="template.xhtml">
-
   <ui:define name="body">
-
     <h:form id="formExchange">
+
       <p:panelGrid columns="2">
         <f:facet name="header">
           <p:outputLabel value="Exchange" />
@@ -31,14 +30,11 @@
           <p:commandButton value="Save" action="#{exchangeBean.insert}" process="@form" update="@form" />
         </f:facet>
       </p:panelGrid>
+      
       <p:separator id="separatorCurrency" />
 
       <p:dataTable  var="exchange" value="#{exchangeBean.allExchanges}" widgetVar="exchangeTable">
-        <f:facet name="header">
-            Exchanges
-        </f:facet>
-       
-        <p:column headerText="Id">
+        <p:column headerText="Id" width="100">
           <h:outputText value="#{exchange.id}" />
         </p:column>
 
@@ -53,10 +49,12 @@
         </p:column>
 
         <p:column headerText="Date">
-          <h:outputText value="#{exchange.date}" />
+          <h:outputText value="#{exchange.date}">
+            <f:convertDateTime pattern="MM/dd/yyyy" />
+          </h:outputText>
         </p:column>
 
-        <p:column headerText="Value">
+        <p:column headerText="Value" width="100">
           <h:outputText value="#{exchange.value}" />
         </p:column>
         
