@@ -65,13 +65,31 @@ In the dao package, we have the classes responsible for the operation with the d
 @Stateless
 public class CurrencyDao {
 
-	@PersistenceContext
-	private EntityManager manager;
-	public void save(Currency currency) {
-		manager.persist(currency);
-	}
-	// others codes…
+  @PersistenceContext
+  private EntityManager manager;
+	
+  public void save(Currency currency) {
+    manager.persist(currency);
+  }
+  // codes...
 }
+```
+
+### Services
+In the services package, we have the classes responsible for orchestrating all transactions with DAOs. Service is the best place to put the business rule, this is where you can use different DAOs to apply validations.
+It is necessary for defining these classes as a Session Bean with the @Stateless annotation. We need to inject the DAOs in the services with the @Inject annotation.
+```
+@Stateless
+public class ExchangeService {
+
+  @Inject
+  private ExchangeDao dao;
+
+  public void insert(Exchange exchange) {
+    this.dao.save(exchange);
+  }
+  // codes...
+ }
 ```
 
 
